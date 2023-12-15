@@ -10,7 +10,6 @@ export default function App() {
             .then(data => setPokemons(data.results));
     }, []);
 
-    const index = index +1;
     const renderItem = ({ item, index }) => (
         <View style={styles.item}>
             <Text>{item.name}</Text>
@@ -20,51 +19,54 @@ export default function App() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>Page Home</Text>
+            <View style={styles.header}>
+                <Text style={styles.text}>Page Home</Text>
+            </View>
             <FlatList
+                style={styles.list}
                 data={pokemons}
                 renderItem={renderItem}
                 keyExtractor={(item, index) => index.toString()}
+                numColumns={3} // Ajout de cette ligne
             />
         </View>
     );
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#F5F5F5',
+        justifyContent: 'space-between',
+        marginTop: 100,
+        width: '90%',
+    },
+    header: {
+        alignItems: 'center',
+        marginBottom: 20,
+        backgroundColor: 'red',
+        width: '100%',
+    },
+    text: {
+        fontSize: 24,
+        padding: 10,
+    },
+    list: {
+        flex: 1,
+        marginBottom: 20,
+    },
     item: {
+        paddingTop: 10,
         flex: 1,
         margin: 3,
         backgroundColor: 'lightblue',
         justifyContent: 'center',
         alignItems: 'center',
-        height: 100, // Vous pouvez ajuster cela en fonction de vos besoins
-    },
-    marginBottom: {
-        marginBottom: 20,
-        width: '100%',
-        display: 'flex',
+        height: 100,
+        width: '33.33%',
     },
     image: {
         width: 50,
         height: 50,
-    },
-    text: {
-        backgroundColor: 'red',
-        fontSize: 24,
-        marginBottom: 20,
-        padding: 10,
-    },
-    container: {
-        flex: 1,
-        backgroundColor: '#909090',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    header: {
-        fontSize: 16,
-        backgroundColor: 'lightgreen',
-    },
-    title: {
-        fontSize: 24,
     },
 });
