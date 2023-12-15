@@ -44,9 +44,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#F5F5F5',
         justifyContent: 'space-between',
-        marginTop: 20,
-        width: '90%',
-        marginLeft: '5%',
+        width: '100%',
     },
     header: {
         alignItems: 'center',
@@ -57,10 +55,13 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 24,
         padding: 10,
+        color: 'white',
     },
     list: {
         flex: 1,
         marginBottom: 20,
+        width: '90%',
+        marginLeft: '5%',
     },
     item: {
         paddingTop: 10,
