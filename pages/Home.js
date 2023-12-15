@@ -1,7 +1,11 @@
 import { StyleSheet, View, Text, Image, FlatList } from 'react-native';
 import React, {useEffect, useState} from 'react';
+import { TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-export default function App() {
+
+export default function HomeScreen() {
+    const navigation = useNavigation();
     const [pokemons, setPokemons] = useState([]);
 
     useEffect(() => {
@@ -11,10 +15,12 @@ export default function App() {
     }, []);
 
     const renderItem = ({ item, index }) => (
-        <View style={styles.item}>
-            <Text>{item.name}</Text>
-            <Image style={styles.image} source={{uri: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/' + (index + 1) + '.png',}} />
-        </View>
+        <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('Pokemon', { pokemonIndex: index + 1 })}>
+            <View>
+                <Text>{item.name}</Text>
+                <Image style={styles.image} source={{uri: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/' + (index + 1) + '.png',}} />
+            </View>
+        </TouchableOpacity>
     );
 
     return (
@@ -27,7 +33,7 @@ export default function App() {
                 data={pokemons}
                 renderItem={renderItem}
                 keyExtractor={(item, index) => index.toString()}
-                numColumns={3} // Ajout de cette ligne
+                numColumns={4}
             />
         </View>
     );
@@ -38,8 +44,9 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#F5F5F5',
         justifyContent: 'space-between',
-        marginTop: 100,
+        marginTop: 20,
         width: '90%',
+        marginLeft: '5%',
     },
     header: {
         alignItems: 'center',
