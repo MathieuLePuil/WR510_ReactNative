@@ -1,6 +1,5 @@
-import { StyleSheet, View, Text, Image, FlatList } from 'react-native';
+import { StyleSheet, View, Text, FlatList } from 'react-native';
 import React, {useEffect, useState} from 'react';
-import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import PokemonItem from '../components/PokemonItem';
 
@@ -53,19 +52,5 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         width: '90%',
         marginLeft: '5%',
-    },
-    item: {
-        paddingTop: 10,
-        flex: 1,
-        margin: 3,
-        backgroundColor: 'lightblue',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: 100,
-        width: '33.33%',
-    },
-    image: {
-        width: 50,
-        height: 50,
     },
 });
