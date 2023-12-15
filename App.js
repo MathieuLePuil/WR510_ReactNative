@@ -1,16 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View, SafeAreaView, SectionList} from 'react-native';
-import {useState} from 'react';
-import CustomButton from "./components/CustomButton";
+import { StyleSheet, View } from 'react-native';
 import Home from './pages/Home';
 
 export default function App() {
-    const [text, setText] = useState('rien');
-
-    const changeText = (newText) => {
-        setText(newText);
-    }
-
     return (
         <View style={styles.container}>
             <Home />
@@ -21,21 +13,10 @@ export default function App() {
 
 const styles = StyleSheet.create({
     container: {
+        width: '100%',
         flex: 1,
         backgroundColor: '#909090',
         alignItems: 'center',
         justifyContent: 'center',
-    },
-    item: {
-        backgroundColor: 'lightblue',
-        padding: 10,
-        marginVertical: 5,
-    },
-    header: {
-        fontSize: 16,
-        backgroundColor: 'lightgreen',
-    },
-    title: {
-        fontSize: 24,
     },
 });
