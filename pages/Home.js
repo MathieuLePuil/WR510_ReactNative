@@ -2,7 +2,7 @@ import { StyleSheet, View, Text, Image, FlatList } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
+import PokemonItem from '../components/PokemonItem';
 
 export default function HomeScreen() {
     const navigation = useNavigation();
@@ -14,15 +14,6 @@ export default function HomeScreen() {
             .then(data => setPokemons(data.results));
     }, []);
 
-    const renderItem = ({ item, index }) => (
-        <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('Pokemon', { pokemonIndex: index + 1 })}>
-            <View>
-                <Text>{item.name}</Text>
-                <Image style={styles.image} source={{uri: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/' + (index + 1) + '.png',}} />
-            </View>
-        </TouchableOpacity>
-    );
-
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -31,7 +22,7 @@ export default function HomeScreen() {
             <FlatList
                 style={styles.list}
                 data={pokemons}
-                renderItem={renderItem}
+                renderItem={({ item, index }) => <PokemonItem item={item} index={index} />}
                 keyExtractor={(item, index) => index.toString()}
                 numColumns={4}
             />
