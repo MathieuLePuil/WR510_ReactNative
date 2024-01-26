@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import Home from './pages/Home';
+import Search from './pages/Search';
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -30,6 +31,7 @@ export default function App() {
         <NavigationContainer>
             <Tab.Navigator>
                 <Tab.Screen name="Home" component={HomeStack} options={{ headerShown: false }} />
+                <Tab.Screen name="Search" component={Search} options={{ headerShown: false }} />
             </Tab.Navigator>
             <StatusBar style="auto" />
         </NavigationContainer>
