@@ -4,12 +4,14 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function PokemonItem({ item, index }) {
     const navigation = useNavigation();
+    const pokemonId = item.url.split('/')[6];
+
 
     return (
-        <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('Pokemon', { pokemonIndex: index + 1 })}>
+        <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('Pokemon', { pokemonIndex: pokemonId })}>
             <View>
                 <Text>{item.name}</Text>
-                <Image style={styles.image} source={{uri: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/' + (index + 1) + '.png',}} />
+                <Image style={styles.image} source={{uri: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/' + pokemonId + '.png',}} />
             </View>
         </TouchableOpacity>
     );
