@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     },
     listContainer: {
         flex: 1,
-        marginBottom: 70,
+        marginBottom: 30,
         width: '90%',
         marginLeft: '5%',
     },

@@ -3,19 +3,34 @@ import { StyleSheet, View } from 'react-native';
 import Home from './pages/Home';
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Pokemon from './pages/Pokemon.js';
 
-
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+
+function HomeStack() {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen
+                name="Home"
+                component={Home}
+            />
+            <Stack.Screen
+                name="Pokemon"
+                component={Pokemon}
+            />
+        </Stack.Navigator>
+    );
+}
 
 export default function App() {
     return (
         <NavigationContainer>
-            <Stack.Navigator>
-                <Stack.Screen name="Home" component={Home} />
-                <Stack.Screen name="Pokemon" component={Pokemon} />
-            </Stack.Navigator>
+            <Tab.Navigator>
+                <Tab.Screen name="Home" component={HomeStack} options={{ headerShown: false }} />
+            </Tab.Navigator>
             <StatusBar style="auto" />
         </NavigationContainer>
     );
