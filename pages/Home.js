@@ -46,7 +46,7 @@ export default function HomeScreen() {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.text}>Page Home</Text>
+                <Text style={styles.text}>Page Accueil</Text>
             </View>
             <View style={styles.listContainer}>
                 <FlatList

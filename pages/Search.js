@@ -31,7 +31,7 @@ export default function HomeScreen() {
                 style={styles.input}
                 value={search}
                 onChangeText={setSearch}
-                placeholder="Search Pokemon"
+                placeholder="Rechercher un pokémon..."
             />
             <FlatList
                 style={styles.list}

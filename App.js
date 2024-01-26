@@ -30,8 +30,8 @@ export default function App() {
     return (
         <NavigationContainer>
             <Tab.Navigator>
-                <Tab.Screen name="Home" component={HomeStack} options={{ headerShown: false }} />
-                <Tab.Screen name="Search" component={Search} options={{ headerShown: false }} />
+                <Tab.Screen name="Accueil" component={HomeStack} options={{ headerShown: false }} />
+                <Tab.Screen name="Recherche" component={Search} options={{ headerShown: false }} />
             </Tab.Navigator>
             <StatusBar style="auto" />
         </NavigationContainer>
