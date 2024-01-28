@@ -1,12 +1,12 @@
 import {StyleSheet, Text, View, Image, TouchableOpacity, FlatList, Button} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
-import PokemonItem from '../components/PokemonItem';
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from '@react-navigation/native';
 import * as ScreenOrientation from 'expo-screen-orientation';
+
 
 export default function TeamScreen() {
     const [isLocked, setIsLocked] = useState(false);
+    const navigation = useNavigation();
 
     const toggleScreenOrientation = () => {
         if (isLocked) {
@@ -32,6 +32,11 @@ export default function TeamScreen() {
                 <Text style={styles.text}>Page paramètres</Text>
             </View>
             <Button title={isLocked ? "Activer l'orientation" : "Désactiver l'orientation de l'écran"} onPress={toggleScreenOrientation} />
+            <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('Photo')}>
+                <View>
+                    <Text>Camera</Text>
+                </View>
+            </TouchableOpacity>
         </View>
     );
 }

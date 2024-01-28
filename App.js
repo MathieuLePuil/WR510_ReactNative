@@ -11,6 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Pokemon from './pages/Pokemon';
 import Settings from './pages/Settings';
 import * as ScreenOrientation from 'expo-screen-orientation';
+import Photo from './pages/Photo';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -26,6 +27,10 @@ function HomeStack() {
             <Stack.Screen
                 name="Pokemon"
                 component={Pokemon}
+            />
+            <Stack.Screen
+                name="Photo"
+                component={Photo}
             />
         </Stack.Navigator>
     );
