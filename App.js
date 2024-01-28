@@ -8,12 +8,15 @@ import {NavigationContainer} from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Pokemon from './pages/Pokemon.js';
+import Pokemon from './pages/Pokemon';
+import Settings from './pages/Settings';
+import * as ScreenOrientation from 'expo-screen-orientation';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function HomeStack() {
+
     return (
         <Stack.Navigator>
             <Stack.Screen
@@ -31,12 +34,13 @@ function HomeStack() {
 export default function App() {
     return (
         <NavigationContainer>
+            <StatusBar style="auto" />
             <Tab.Navigator>
                 <Tab.Screen name="Accueil" component={HomeStack} options={{ headerShown: false }} />
                 <Tab.Screen name="Recherche" component={Search} options={{ headerShown: false }} />
                 <Tab.Screen name="Mon équipe" component={Team} options={{ headerShown: false }} key={Math.random()} />
+                <Tab.Screen name="Paramètres" component={Settings} options={{ headerShown: false }} />
             </Tab.Navigator>
-            <StatusBar style="auto" />
         </NavigationContainer>
     );
 }
