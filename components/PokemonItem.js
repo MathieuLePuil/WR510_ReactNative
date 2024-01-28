@@ -3,6 +3,10 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 export default function PokemonItem({ item, index }) {
+    if (!item || !item.url) {
+        return null;
+    }
+
     const navigation = useNavigation();
     const pokemonId = item.url.split('/')[6];
 
