@@ -14,34 +14,12 @@ export default function HomeScreen() {
             .then(response => response.json())
             .then(data => {
                 setPokemons(data.results);
-                setNextUrl(data.next);
-                setPrevUrl(data.previous);
             });
     }
 
     useEffect(() => {
-        fetchData('https://pokeapi.co/api/v2/pokemon/');
+        fetchData('https://pokeapi.co/api/v2/pokemon?limit=1302');
     }, []);
-
-    const handleNext = () => {
-        if (nextUrl) {
-            fetchData(nextUrl);
-        }
-    }
-
-    const handlePrev = () => {
-        if (prevUrl) {
-            fetchData(prevUrl);
-        }
-    }
-
-    const handleFirst = () => {
-        fetchData('https://pokeapi.co/api/v2/pokemon/');
-    }
-
-    const handleLast = () => {
-        fetchData(`https://pokeapi.co/api/v2/pokemon/?offset=1300&limit=20`);
-    }
 
     return (
         <View style={styles.container}>
@@ -56,12 +34,6 @@ export default function HomeScreen() {
                     keyExtractor={(item, index) => index.toString()}
                     numColumns={4}
                 />
-                <View style={styles.buttonContainer}>
-                    <Button title="<<" onPress={handleFirst} />
-                    {prevUrl && <Button title="<" onPress={handlePrev} />}
-                    {nextUrl && <Button title=">" onPress={handleNext} />}
-                    <Button title=">>" onPress={handleLast} />
-                </View>
             </View>
         </View>
     );
