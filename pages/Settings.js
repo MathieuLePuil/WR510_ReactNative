@@ -1,28 +1,27 @@
-import {StyleSheet, Text, View, Image, TouchableOpacity, FlatList, Button} from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity, FlatList, Switch} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import { useNavigation } from '@react-navigation/native';
 import * as ScreenOrientation from 'expo-screen-orientation';
-
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 export default function TeamScreen() {
-    const [isLocked, setIsLocked] = useState(false);
+    const [isLocked, setIsLocked] = useState(true);
     const navigation = useNavigation();
 
-    const toggleScreenOrientation = () => {
-        if (isLocked) {
-            ScreenOrientation.getOrientationLockAsync().then((lock) => {
-                if (lock !== ScreenOrientation.OrientationLock.DEFAULT) {
-                    ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.DEFAULT).then(r => console.log(r));
-                }
-            });
-            setIsLocked(false);
-        } else {
+    const toggleScreenOrientation = (value) => {
+        setIsLocked(value);
+        if (!value) {
             ScreenOrientation.getOrientationLockAsync().then((lock) => {
                 if (lock !== ScreenOrientation.OrientationLock.PORTRAIT_UP) {
                     ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP).then(r => console.log(r));
                 }
             });
-            setIsLocked(true);
+        } else {
+            ScreenOrientation.getOrientationLockAsync().then((lock) => {
+                if (lock !== ScreenOrientation.OrientationLock.DEFAULT) {
+                    ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.DEFAULT).then(r => console.log(r));
+                }
+            });
         }
     };
 
@@ -31,11 +30,13 @@ export default function TeamScreen() {
             <View style={styles.header}>
                 <Text style={styles.text}>Page paramètres</Text>
             </View>
-            <Button title={isLocked ? "Activer l'orientation" : "Désactiver l'orientation de l'écran"} onPress={toggleScreenOrientation} />
-            <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('Photo')}>
-                <View>
-                    <Text>Camera</Text>
-                </View>
+            <View style={styles.switchContainer}>
+                <Text>{isLocked ? "Orientation de l'écran activée" : "Orientation de l'écran désactivée"}</Text>
+                <Switch onValueChange={toggleScreenOrientation} value={isLocked} />
+            </View>
+            <TouchableOpacity style={styles.cameraButton} onPress={() => navigation.navigate('Photo')}>
+                <Ionicons name="camera-outline" style={styles.cameraIcon} />
+                <Text style={styles.cameraText}>Camera</Text>
             </TouchableOpacity>
         </View>
     );
@@ -45,7 +46,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#F5F5F5',
-        justifyContent: 'space-around',
         width: '100%',
         height: '100%',
         paddingTop: 50,
@@ -85,5 +85,31 @@ const styles = StyleSheet.create({
     pokemonName: {
         fontSize: 16,
         fontWeight: 'bold',
+    },
+    switchContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: 20,
+        marginBottom: 20,
+    },
+    cameraButton: {
+        backgroundColor: 'red',
+        MarginTop: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row',
+        padding: 10,
+        borderRadius: 5,
+        marginHorizontal: 20,
+    },
+    cameraIcon: {
+        color: 'white',
+        fontSize: 20,
+        marginRight: 10,
+    },
+    cameraText: {
+        color: 'white',
+        fontSize: 20,
     },
 });

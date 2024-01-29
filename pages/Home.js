@@ -24,7 +24,7 @@ export default function HomeScreen() {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.text}>Page Accueil</Text>
+                <Text style={styles.text}>Tous les Pokémons</Text>
             </View>
             <View style={styles.listContainer}>
                 <FlatList
@@ -32,7 +32,7 @@ export default function HomeScreen() {
                     data={pokemons}
                     renderItem={({ item, index }) => <PokemonItem item={item} index={index} />}
                     keyExtractor={(item, index) => index.toString()}
-                    numColumns={4}
+                    numColumns={3}
                 />
             </View>
         </View>
@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         width: '100%',
         height: '100%',
+        paddingTop: 50,
     },
     header: {
         alignItems: 'center',
@@ -60,13 +61,11 @@ const styles = StyleSheet.create({
     },
     list: {
         flex: 1,
-        marginBottom: 20,
         width: '90%',
         marginLeft: '5%',
     },
     listContainer: {
         flex: 1,
-        marginBottom: 30,
         width: '90%',
         marginLeft: '5%',
     },

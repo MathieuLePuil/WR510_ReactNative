@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, StyleSheet, Button } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function PokemonDetails({ pokemonData, pokemonIndex }) {
@@ -42,9 +42,11 @@ export default function PokemonDetails({ pokemonData, pokemonIndex }) {
             <Image style={styles.image} source={{uri: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/' + pokemonIndex + '.png',}} />
             <View style={styles.type}>
                 <Text>Type(s) :</Text>
-                {pokemonData.types.map((typeData, index) => (
-                    <Text key={index}> {typeData.type.name}</Text>
-                ))}
+                <View style={styles.typeContent}>
+                    {pokemonData.types.map((typeData, index) => (
+                        <Text key={index}> {typeData.type.name}</Text>
+                    ))}
+                </View>
             </View>
             <View style={styles.flex}>
                 <Text>Height : </Text><Text>{pokemonData.height}</Text>
@@ -52,21 +54,71 @@ export default function PokemonDetails({ pokemonData, pokemonIndex }) {
             <View style={styles.flex}>
                 <Text>Weight : </Text><Text>{pokemonData.weight}</Text>
             </View>
-            <Button title={buttonState} onPress={handleButtonClick} />
+            <TouchableOpacity style={styles.button} onPress={handleButtonClick}>
+                <Text style={styles.buttonText}>{buttonState}</Text>
+            </TouchableOpacity>
         </>
     );
 }
 
 const styles = StyleSheet.create({
     image: {
-        width: 400,
-        height: 400,
+        width: 300,
+        height: 300,
+        borderRadius: 150,
+        margin: 20,
+        alignSelf: 'center',
     },
     flex: {
         display: 'flex',
         flexDirection: 'row',
+        justifyContent: 'space-between',
+        margin: 5,
+        padding: 10,
+        backgroundColor: '#f8f8f8',
+        borderRadius: 10,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
     },
     type: {
         marginBottom: 10,
-    }
+        margin: 20,
+        padding: 10,
+        backgroundColor: '#f8f8f8',
+        borderRadius: 10,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+    },
+    typeContent: {
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+    },
+    text: {
+        fontSize: 18,
+        color: '#333',
+    },
+    button: {
+        backgroundColor: 'red',
+        padding: 10,
+        borderRadius: 5,
+        alignItems: 'center',
+        margin: 20,
+    },
+    buttonText: {
+        color: 'white',
+        fontSize: 18,
+    },
 });

@@ -12,6 +12,7 @@ import Pokemon from './pages/Pokemon';
 import Settings from './pages/Settings';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import Photo from './pages/Photo';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -23,6 +24,7 @@ function HomeStack() {
             <Stack.Screen
                 name="Home"
                 component={Home}
+                options={{ headerShown: false }}
             />
             <Stack.Screen
                 name="Pokemon"
@@ -41,10 +43,48 @@ export default function App() {
         <NavigationContainer>
             <StatusBar style="auto" />
             <Tab.Navigator>
-                <Tab.Screen name="Accueil" component={HomeStack} options={{ headerShown: false }} />
-                <Tab.Screen name="Recherche" component={Search} options={{ headerShown: false }} />
-                <Tab.Screen name="Mon équipe" component={Team} options={{ headerShown: false }} key={Math.random()} />
-                <Tab.Screen name="Paramètres" component={Settings} options={{ headerShown: false }} />
+                <Tab.Screen
+                    name="Accueil"
+                    component={HomeStack}
+                    options={{
+                        headerShown: false,
+                        tabBarIcon: ({ color, size }) => (
+                            <Ionicons name="home" color={color} size={size} />
+                        ),
+                    }}
+                />
+                <Tab.Screen
+                    name="Recherche"
+                    component={Search}
+                    options={{
+                        headerShown: false,
+                        tabBarIcon: ({ color, size }) => (
+                            <Ionicons name="search" color={color} size={size} />
+                        ),
+                    }}
+                />
+                <Tab.Screen
+                    name="Ma Team"
+                    component={Team}
+                    options={{
+                        headerShown: false,
+                        tabBarIcon: ({ color, size }) => (
+                            <Ionicons name="people-circle-outline" color={color} size={size} />
+                        ),
+                    }}
+                    key={Math.random()}
+                />
+                <Tab.Screen
+                    name="Paramètres"
+                    component={Settings}
+                    options={{
+                        headerShown: false,
+                        tabBarIcon: ({ color, size }) => (
+                            <Ionicons name="settings-outline" color={color} size={size} />
+                        ),
+                    }}
+                    key={Math.random()}
+                />
             </Tab.Navigator>
         </NavigationContainer>
     );

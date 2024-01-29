@@ -54,16 +54,16 @@ export default function TeamScreen() {
             <View style={styles.header}>
                 <Text style={styles.text}>Page Équipe</Text>
             </View>
-            <Button title="Vider mon équipe" onPress={clearTeam} />
+            <TouchableOpacity
+                style={styles.button}
+                onPress={clearTeam}
+            >
+                <Text style={styles.buttonText}>Vider mon équipe</Text>
+            </TouchableOpacity>
             <FlatList
                 data={pokemons}
                 renderItem={({ item: pokemon }) => (
-                    <TouchableOpacity onPress={() => navigation.navigate('Pokemon', { pokemonIndex: pokemon.id })}>
-                        <View style={styles.item}>
-                            <Text style={styles.pokemonName}>{pokemon.name}</Text>
-                            <Image style={styles.image} source={{uri: pokemon.image}} />
-                        </View>
-                    </TouchableOpacity>
+                    <PokemonItem item={{name: pokemon.name, url: `https://pokeapi.co/api/v2/pokemon/${pokemon.id}`}} index={pokemon.id} />
                 )}
                 keyExtractor={(pokemon) => pokemon.id.toString()}
                 numColumns={2}
@@ -117,4 +117,15 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
     },
+    button: {
+        backgroundColor: 'red',
+        padding: 10,
+        margin: 30,
+        borderRadius: 5,
+        alignItems: 'center',
+    },
+    buttonText: {
+        color: '#FFFFFF',
+        fontWeight: 'bold',
+    }
 });

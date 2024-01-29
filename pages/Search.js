@@ -33,13 +33,17 @@ export default function HomeScreen() {
                 onChangeText={setSearch}
                 placeholder="Rechercher un pokémon..."
             />
-            <FlatList
-                style={styles.list}
-                data={filteredPokemons}
-                renderItem={({ item, index }) => <PokemonItem item={item} index={index} />}
-                keyExtractor={(item, index) => index.toString()}
-                numColumns={4}
-            />
+            {filteredPokemons.length > 0 ? (
+                <FlatList
+                    style={styles.list}
+                    data={filteredPokemons}
+                    renderItem={({ item, index }) => <PokemonItem item={item} index={index} />}
+                    keyExtractor={(item, index) => index.toString()}
+                    numColumns={3}
+                />
+            ) : (
+                <Text style={styles.error}>Aucun pokémon trouvé</Text>
+            )}
         </View>
     );
 }
@@ -88,5 +92,12 @@ const styles = StyleSheet.create({
         padding: 10,
         backgroundColor: '#FFFFFF',
         color: '#000000',
+    },
+    error: {
+        fontSize: 18,
+        color: 'red',
+        textAlign: 'center',
+        marginBottom: 560,
+        marginTop: 20,
     },
 });
