@@ -15,7 +15,7 @@ export default function PokemonDetails({ pokemonData, pokemonIndex }) {
     useEffect(() => {
         const intervalId = setInterval(() => {
             checkTeam();
-        }, 100);
+        }, 1000);
 
         return () => clearInterval(intervalId);
     }, []);

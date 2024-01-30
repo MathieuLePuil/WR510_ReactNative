@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Home from './pages/Home';
 import Search from './pages/Search';
 import Team from './pages/Team';
@@ -7,10 +7,8 @@ import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import Pokemon from './pages/Pokemon';
 import Settings from './pages/Settings';
-import * as ScreenOrientation from 'expo-screen-orientation';
 import Photo from './pages/Photo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 

@@ -1,13 +1,9 @@
-import { StyleSheet, View, Text, FlatList, Button } from 'react-native';
+import { StyleSheet, View, Text, FlatList } from 'react-native';
 import React, {useEffect, useState} from 'react';
-import { useNavigation } from '@react-navigation/native';
 import PokemonItem from '../components/PokemonItem';
 
 export default function HomeScreen() {
-    const navigation = useNavigation();
     const [pokemons, setPokemons] = useState([]);
-    const [nextUrl, setNextUrl] = useState(null);
-    const [prevUrl, setPrevUrl] = useState(null);
 
     const fetchData = (url) => {
         fetch(url)
@@ -68,9 +64,5 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '90%',
         marginLeft: '5%',
-    },
-    buttonContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
     },
 });

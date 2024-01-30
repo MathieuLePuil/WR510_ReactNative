@@ -1,13 +1,11 @@
-import {StyleSheet, Text, View, Image, TouchableOpacity, FlatList, Button} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, FlatList} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
 import PokemonItem from '../components/PokemonItem';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function TeamScreen() {
-    const navigation = useNavigation();
     const [pokemons, setPokemons] = useState([]);
-    const [storageData, setStorageData] = useState([]); // Nouvel état pour stocker les données de l'AsyncStorage
+    const [storageData, setStorageData] = useState([]);
 
     const fetchData = async () => {
         try {
@@ -18,7 +16,7 @@ export default function TeamScreen() {
                 const pokemonData = await response.json();
                 return {
                     id: pokemonId,
-                    name: pokemonData.name, // Ajoutez cette ligne pour récupérer le nom du Pokémon
+                    name: pokemonData.name,
                     image: pokemonData.sprites.front_default,
                 };
             }));
@@ -91,31 +89,6 @@ const styles = StyleSheet.create({
         fontSize: 24,
         padding: 10,
         color: 'white',
-    },
-    item: {
-        padding: 30,
-        margin: 10,
-        backgroundColor: 'lightblue',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: 100,
-        flex: 1,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
-    },
-    image: {
-        width: 50,
-        height: 50,
-    },
-    pokemonName: {
-        fontSize: 16,
-        fontWeight: 'bold',
     },
     button: {
         backgroundColor: 'red',

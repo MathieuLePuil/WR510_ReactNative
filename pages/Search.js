@@ -1,10 +1,8 @@
-import { StyleSheet, View, Text, FlatList, Button, TextInput } from 'react-native';
+import { StyleSheet, View, Text, FlatList, TextInput } from 'react-native';
 import React, {useEffect, useState} from 'react';
-import { useNavigation } from '@react-navigation/native';
 import PokemonItem from '../components/PokemonItem';
 
 export default function HomeScreen() {
-    const navigation = useNavigation();
     const [pokemons, setPokemons] = useState([]);
     const [search, setSearch] = useState('');
 
@@ -73,16 +71,6 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         width: '90%',
         marginLeft: '5%',
-    },
-    listContainer: {
-        flex: 1,
-        marginBottom: 30,
-        width: '90%',
-        marginLeft: '5%',
-    },
-    buttonContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
     },
     input: {
         height: 40,

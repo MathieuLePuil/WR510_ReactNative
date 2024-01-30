@@ -1,12 +1,10 @@
-import {StyleSheet, Text, View, Image, TouchableOpacity, FlatList, Switch} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, Switch} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import { useNavigation } from '@react-navigation/native';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 export default function TeamScreen() {
     const [isLocked, setIsLocked] = useState(true);
-    const navigation = useNavigation();
 
     const toggleScreenOrientation = (value) => {
         setIsLocked(value);
@@ -60,31 +58,6 @@ const styles = StyleSheet.create({
         fontSize: 24,
         padding: 10,
         color: 'white',
-    },
-    item: {
-        padding: 30,
-        margin: 10,
-        backgroundColor: 'lightblue',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: 100,
-        flex: 1,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
-    },
-    image: {
-        width: 50,
-        height: 50,
-    },
-    pokemonName: {
-        fontSize: 16,
-        fontWeight: 'bold',
     },
     switchContainer: {
         flexDirection: 'row',
